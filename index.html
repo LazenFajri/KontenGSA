@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio | Frontend & AI Enthusiast</title>
+    <meta name="description" content="Portofolio personal developer modern berstandar tech company. Fokus pada Modern Frontend, UI/UX Glassmorphism, dan Integrasi Solusi AI.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            base: '#030712',
+                            surface: '#090d16',
+                            card: '#0f172a',
+                            border: '#1e293b',
+                        },
+                        neon: {
+                            cyan: '#06b6d4',
+                            violet: '#8b5cf6',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 8s infinite ease-in-out',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                        'float': 'float 5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '33%': { transform: 'translate(30px, -40px) scale(1.1)' },
+                            '66%': { transform: 'translate(-25px, 20px) scale(0.95)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', filter: 'blur(45px)' },
+                            '50%': { opacity: '0.7', filter: 'blur(60px)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Ambient Glow, Glassmorphism, and Grid Mesh -->
+    <style>
+        /* Custom Background Pattern */
+        .tech-grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-5px) scale(1.015);
+            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.2), 0 0 15px rgba(6, 182, 212, 0.1);
+        }
+
+        /* Neon Glow Effects */
+        .neon-border-glow {
+            position: relative;
+        }
+
+        .neon-border-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(139, 92, 246, 0.6));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .neon-border-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+
+<body class="bg-[#030712] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-300">
+
+    <!-- Ambient Glowing Orbs Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-32 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-blob"></div>
+        <div class="absolute top-1/3 -right-20 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl animate-blob [animation-delay:2s]"></div>
+        <div class="absolute -bottom-20 left-1/3 w-[30rem] h-[30rem] bg-emerald-500/15 rounded-full blur-3xl animate-blob [animation-delay:4s]"></div>
+        <div class="absolute inset-0 tech-grid-pattern opacity-60"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#030712]/80 border-b border-white/[0.06] transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 p-[1px] shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                    <div class="w-full h-full bg-[#090d16] rounded-xl flex items-center justify-center font-mono font-bold text-cyan-400 text-lg group-hover:text-white transition-colors">
+                        &lt;/&gt;
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                        DevPortfolio <span class="text-xs px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono">v2.4</span>
+                    </span>
+                    <span class="text-xs text-slate-400 font-mono">Frontend & AI Systems</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#hero" class="hover:text-cyan-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Beranda</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Tech Stack</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Proyek</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-cyan-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Kontak</a>
+            </nav>
+
+            <!-- Quick Action & Availability -->
+            <div class="hidden sm:flex items-center gap-4">
+                <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Ready for Work</span>
+                </div>
+                <a href="#contact" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 hover:opacity-95 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button id="mobile-menu-btn" aria-label="Buka menu navigasi" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 bg-[#030712]/95 border-b border-slate-800 backdrop-blur-xl">
+            <div class="flex flex-col space-y-3 pt-2">
+                <a href="#hero" class="mobile-nav-item px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900">Beranda</a>
+                <a href="#skills" class="mobile-nav-item px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900">Tech Stack</a>
+                <a href="#projects" class="mobile-nav-item px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900">Proyek</a>
+                <a href="#contact" class="mobile-nav-item px-3 py-2 rounded-lg text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900">Kontak</a>
+                <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+                    <span class="text-xs text-emerald-400 flex items-center gap-1.5 font-mono">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Open to Collaboration
+                    </span>
+                    <a href="#contact" class="px-4 py-2 rounded-lg text-xs font-semibold text-white bg-cyan-500 hover:bg-cyan-400">
+                        Kontak Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-20">
+
+        <!-- =================== HERO SECTION =================== -->
+        <section id="hero" class="min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-5xl mx-auto text-center relative">
+                
+                <!-- Floating Neon Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-mono mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                    </span>
+                    <span>Building Next-Generation Digital Experiences</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Membangun Web Cepat, Elegan &
+                    <span class="block mt-2 bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_5px_15px_rgba(6,182,212,0.3)]">
+                        Frontend & AI Enthusiast
+                    </span>
+                </h1>
+
+                <!-- Subheadline Pitch -->
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 leading-relaxed">
+                    Menggabungkan ketelitian arsitektur antarmuka modern dengan kecerdasan komputasi AI. Membangun aplikasi berskala tinggi dengan pengalaman interaktif layaknya tech startup kelas dunia.
+                </p>
+
+                <!-- Action CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
+                    <!-- Button: Lihat Proyek -->
+                    <a href="#projects" id="btn-view-projects" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-300 hover:from-cyan-300 hover:to-teal-200 shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transform hover:-translate-y-0.5 transition-all duration-300">
+                        <span>Lihat Proyek</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </a>
+
+                    <!-- Button: Download CV -->
+                    <button id="btn-download-cv" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-slate-200 glass-panel hover:text-white hover:border-cyan-500/50 hover:bg-slate-800/80 shadow-[0_4px_20px_rgba(0,0,0,0.3)] transform hover:-translate-y-0.5 transition-all duration-300">
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Download CV</span>
+                    </button>
+                </div>
+
+                <!-- Stats Ticker / Metrics -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                        <div class="text-2xl sm:text-3xl font-bold text-cyan-400 font-mono">100%</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-mono">Responsive Code</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                        <div class="text-2xl sm:text-3xl font-bold text-violet-400 font-mono">4+</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-mono">Core Tech Stack</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                        <div class="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono">Sub-100ms</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-mono">Optimized Speed</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border border-white/5">
+                        <div class="text-2xl sm:text-3xl font-bold text-amber-400 font-mono">AI-First</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-mono">Workflow Ready</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================== TECH STACK SECTION =================== -->
+        <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-mono mb-3">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    <span>Capabilities & Toolkit</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                    Tech Stack & Ekosistem
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    Fondasi teknologi modern yang digunakan untuk merancang antarmuka performa tinggi dan integrasi AI.
+                </p>
+            </div>
+
+            <!-- Primary Tech Grid (Focus on requested 4 stacks + extended badges) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. JavaScript Card -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl group border-l-4 border-l-yellow-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(234,179,8,0.3)] transition-all">
+                            <!-- JS Icon SVG -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 3h18v18H3V3zm14.5 13.5c-.8 0-1.4-.4-1.7-1l-1.3.8c.6 1.1 1.6 1.7 3 1.7 1.9 0 3.2-1.1 3.2-2.8 0-1.8-1.2-2.4-2.4-2.8l-.5-.2c-.8-.3-1.1-.6-1.1-1.1 0-.6.5-1 1.2-1 .7 0 1.2.3 1.5.8l1.3-.8c-.5-.9-1.4-1.4-2.8-1.4-1.7 0-2.9 1-2.9 2.5 0 1.6 1.1 2.3 2.3 2.7l.5.2c.8.3 1.2.6 1.2 1.2 0 .6-.6 1.2-1.6 1.2zm-6.2-7.2h1.8v6.7c0 1.4-.8 2.2-2.2 2.2-.9 0-1.7-.4-2.1-1.1l1.3-.8c.2.4.5.6.8.6.4 0 .7-.3.7-.9V9.8z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-yellow-400/10 text-yellow-400 border border-yellow-400/20">Core Language</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">JavaScript</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        Modern ES6+, manipulasi DOM reaktif, arsitektur asynchronous async/await, dan logika interaktif performa tinggi.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ESNext</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Fetch API</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Micro-animations</span>
+                    </div>
+                </div>
+
+                <!-- 2. Python Card -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl group border-l-4 border-l-cyan-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">
+                            <!-- Python SVG -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.9 2c-4.4 0-4.1 1.9-4.1 1.9l.01 2h4.2v.6H6.1s-2.8-.3-2.8 4.1c0 4.4 2.5 4.3 2.5 4.3h1.5v-2.1s-.1-2.5 2.5-2.5h4.2s2.4.1 2.4-2.4V4.4S16.7 2 11.9 2zm-1.2 1.3c.4 0 .7.3.7.7 0 .4-.3.7-.7.7-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7zm1.4 18.7c4.4 0 4.1-1.9 4.1-1.9l-.01-2h-4.2v-.6h5.9s2.8.3 2.8-4.1c0-4.4-2.5-4.3-2.5-4.3h-1.5v2.1s.1 2.5-2.5 2.5h-4.2s-2.4-.1-2.4 2.4v3.5s-.3 2.4 4.5 2.4zm1.2-1.3c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7.4 0 .7.3.7.7 0 .4-.3.7-.7.7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">AI & Scripting</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Python</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        Pemrosesan data, otomatisasi prompt AI, backend API cepat (FastAPI), serta integrasi model machine learning.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">FastAPI</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">LangChain</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Automation</span>
+                    </div>
+                </div>
+
+                <!-- 3. Tailwind CSS Card -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl group border-l-4 border-l-teal-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(20,184,166,0.3)] transition-all">
+                            <!-- Tailwind SVG -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-teal-400/10 text-teal-400 border border-teal-400/20">Design System</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-teal-400 transition-colors">Tailwind CSS</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        Perancangan antarmuka ultra-cepat dengan estetika Glassmorphism, skema Dark Mode adaptif, dan responsivitas presisi.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Glassmorphism</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Flex/Grid</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Animations</span>
+                    </div>
+                </div>
+
+                <!-- 4. Google Cloud Card -->
+                <div class="glass-panel glass-panel-hover p-6 rounded-2xl group border-l-4 border-l-blue-500">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">
+                            <!-- Cloud SVG -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h10a5 5 0 001.5-9.8A6.5 6.5 0 006.7 8.2 4.5 4.5 0 003 15z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-blue-400/10 text-blue-400 border border-blue-400/20">Cloud Infrastructure</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Google Cloud</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        Deployment aplikasi berskala enterprise, Vertex AI integration, Google Cloud Run serverless, dan Cloud Storage.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Vertex AI</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Cloud Run</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Serverless</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Extended Skills Pill Ribbon -->
+            <div class="mt-12 p-6 glass-panel rounded-2xl flex flex-wrap items-center justify-between gap-4 border border-white/5">
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400 uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span>Supporting Ecosystem:</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                    <span class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/60 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors">React & Vite</span>
+                    <span class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/60 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors">RESTful & GraphQL</span>
+                    <span class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/60 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors">Git / GitHub Actions</span>
+                    <span class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/60 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors">Docker Containers</span>
+                    <span class="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 text-slate-300 border border-slate-700/60 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors">Prompt Engineering</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =================== PROJECT SHOWCASE SECTION =================== -->
+        <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono mb-3">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <span>Featured Works</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                    Project Showcase
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    Tiga implementasi arsitektur modern berkelas tech enterprise dengan fokus integrasi AI dan visual memukau.
+                </p>
+            </div>
+
+            <!-- 3 Projects Grid with Glassmorphism & Hover Scale -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- PROJECT 1: NexusAI Studio -->
+                <div class="glass-panel rounded-2xl overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-cyan-500/40 hover:shadow-[0_20px_40px_rgba(6,182,212,0.2)] flex flex-col">
+                    <!-- Project Preview Visual Mockup -->
+                    <div class="relative h-52 bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950/40 overflow-hidden border-b border-white/5 flex items-center justify-center p-6">
+                        <!-- Ambient backdrop glow inside card -->
+                        <div class="absolute w-40 h-40 bg-cyan-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                        
+                        <!-- Realistic UI Mockup Graphic -->
+                        <div class="relative w-full h-full rounded-xl bg-slate-900/90 border border-cyan-500/30 p-3 shadow-2xl flex flex-col justify-between">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
+                                </div>
+                                <span class="text-[10px] font-mono text-cyan-400">nexus-ai-studio.app</span>
+                            </div>
+                            <div class="flex items-center gap-3 my-auto">
+                                <div class="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-300">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="h-2.5 w-24 bg-cyan-400/40 rounded"></div>
+                                    <div class="h-2 w-32 bg-slate-700 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] text-slate-400 font-mono">
+                                <span>Status: <span class="text-emerald-400 font-semibold">Live AI Inference</span></span>
+                                <span>Speed: 38ms</span>
+                            </div>
+                        </div>
+
+                        <!-- Badge Overlay -->
+                        <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">
+                            Generative AI
+                        </span>
+                    </div>
+
+                    <!-- Project Content -->
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">
+                                NexusAI Generative Studio
+                            </h3>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                Platform kreasi visual dan otomatisasi prompt AI berbasis multimodal. Memungkinkan generasi prompt instan, upscaling gambar, dan manajemen pipeline model pintar.
+                            </p>
+                        </div>
+
+                        <div>
+                            <!-- Tech Tags -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Python</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Google Cloud</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-teal-500/10 text-teal-300 border border-teal-500/20">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-yellow-500/10 text-yellow-300 border border-yellow-500/20">JavaScript</span>
+                            </div>
+
+                            <!-- Interactive Buttons -->
+                            <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                                <button onclick="triggerDemoModal('NexusAI Generative Studio', 'https://demo.nexusai.example.com')" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-white bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 transition-colors">
+                                    <span>Live Preview</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="triggerCodeModal('NexusAI Generative Studio', 'https://github.com/developer/nexus-ai')" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800 transition-colors" aria-label="Lihat source code">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: OmniPulse Cloud Analytics -->
+                <div class="glass-panel rounded-2xl overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-violet-500/40 hover:shadow-[0_20px_40px_rgba(139,92,246,0.2)] flex flex-col">
+                    <!-- Project Preview Visual Mockup -->
+                    <div class="relative h-52 bg-gradient-to-br from-slate-900 via-slate-950 to-violet-950/40 overflow-hidden border-b border-white/5 flex items-center justify-center p-6">
+                        <div class="absolute w-40 h-40 bg-violet-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                        
+                        <!-- Realistic UI Mockup Graphic -->
+                        <div class="relative w-full h-full rounded-xl bg-slate-900/90 border border-violet-500/30 p-3 shadow-2xl flex flex-col justify-between">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
+                                </div>
+                                <span class="text-[10px] font-mono text-violet-400">pulse-telemetry.io</span>
+                            </div>
+                            <!-- Mockup Chart -->
+                            <div class="flex items-end justify-between gap-1.5 h-16 px-2 py-1">
+                                <div class="w-full bg-violet-500/30 rounded-t h-[40%]"></div>
+                                <div class="w-full bg-violet-500/50 rounded-t h-[70%]"></div>
+                                <div class="w-full bg-cyan-400/70 rounded-t h-[90%] animate-pulse"></div>
+                                <div class="w-full bg-violet-500/40 rounded-t h-[55%]"></div>
+                                <div class="w-full bg-violet-500/60 rounded-t h-[80%]"></div>
+                                <div class="w-full bg-cyan-400/80 rounded-t h-[95%]"></div>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] text-slate-400 font-mono">
+                                <span>Throughput: <span class="text-violet-300 font-semibold">124k req/s</span></span>
+                                <span>Latency: 14ms</span>
+                            </div>
+                        </div>
+
+                        <!-- Badge Overlay -->
+                        <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-violet-500/20 text-violet-300 border border-violet-500/40 backdrop-blur-md">
+                            SaaS Telemetry
+                        </span>
+                    </div>
+
+                    <!-- Project Content -->
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-violet-400 transition-colors mb-2">
+                                OmniPulse Realtime Dashboard
+                            </h3>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                Dashboard pemantauan analitik server dan user traffic real-time dengan streaming WebSocket 60fps, visualisasi data interaktif, dan notifikasi anomali cerdas.
+                            </p>
+                        </div>
+
+                        <div>
+                            <!-- Tech Tags -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-yellow-500/10 text-yellow-300 border border-yellow-500/20">JavaScript (ES6+)</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-teal-500/10 text-teal-300 border border-teal-500/20">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">WebSockets</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Google Cloud</span>
+                            </div>
+
+                            <!-- Interactive Buttons -->
+                            <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                                <button onclick="triggerDemoModal('OmniPulse Realtime Dashboard', 'https://demo.omnipulse.example.com')" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-white bg-violet-500/20 hover:bg-violet-500/30 border border-violet-500/40 transition-colors">
+                                    <span>Live Preview</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="triggerCodeModal('OmniPulse Realtime Dashboard', 'https://github.com/developer/omnipulse-analytics')" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800 transition-colors" aria-label="Lihat source code">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Cerebra Enterprise Bot -->
+                <div class="glass-panel rounded-2xl overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:border-emerald-500/40 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)] flex flex-col">
+                    <!-- Project Preview Visual Mockup -->
+                    <div class="relative h-52 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950/40 overflow-hidden border-b border-white/5 flex items-center justify-center p-6">
+                        <div class="absolute w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                        
+                        <!-- Realistic UI Mockup Graphic -->
+                        <div class="relative w-full h-full rounded-xl bg-slate-900/90 border border-emerald-500/30 p-3 shadow-2xl flex flex-col justify-between">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
+                                </div>
+                                <span class="text-[10px] font-mono text-emerald-400">cerebra-rag.internal</span>
+                            </div>
+                            
+                            <!-- Chat Bubbles Simulation -->
+                            <div class="space-y-2 my-auto">
+                                <div class="flex justify-end">
+                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-lg px-2 py-1 max-w-[80%]">
+                                        Analisis laporan Q3 dan simpulkan rekomendasi.
+                                    </span>
+                                </div>
+                                <div class="flex justify-start">
+                                    <span class="text-[10px] bg-slate-800 text-slate-300 rounded-lg px-2 py-1 max-w-[85%] flex items-center gap-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                        RAG retrieved 4 vectors. Efisiensi naik +28%.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between items-center text-[10px] text-slate-400 font-mono">
+                                <span>Engine: <span class="text-emerald-300 font-semibold">GCP Vertex AI</span></span>
+                                <span>Accuracy: 99.4%</span>
+                            </div>
+                        </div>
+
+                        <!-- Badge Overlay -->
+                        <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 backdrop-blur-md">
+                            RAG & LLM Ops
+                        </span>
+                    </div>
+
+                    <!-- Project Content -->
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">
+                                Cerebra Enterprise RAG Bot
+                            </h3>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                Sistem agen percakapan bertenaga RAG (Retrieval-Augmented Generation) untuk pencarian ribuan dokumen teknis internal perusahaan dengan sitasi referensi otomatis.
+                            </p>
+                        </div>
+
+                        <div>
+                            <!-- Tech Tags -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Python</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Google Cloud</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">LangChain</span>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-yellow-500/10 text-yellow-300 border border-yellow-500/20">JavaScript</span>
+                            </div>
+
+                            <!-- Interactive Buttons -->
+                            <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+                                <button onclick="triggerDemoModal('Cerebra Enterprise RAG Bot', 'https://demo.cerebra.example.com')" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-white bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 transition-colors">
+                                    <span>Live Preview</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="triggerCodeModal('Cerebra Enterprise RAG Bot', 'https://github.com/developer/cerebra-rag-engine')" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800 transition-colors" aria-label="Lihat source code">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================== CONTACT & FOOTER SECTION =================== -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-3">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Let's Connect</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                    Mulai Kolaborasi & Hubungi
+                </h2>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    Punya ide proyek, tawaran kerja, atau ingin berdiskusi seputar Modern Frontend & AI? Kirim pesan langsung di bawah ini.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-start">
+                
+                <!-- Contact Info Cards (Left Column) -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <div class="glass-panel p-6 rounded-2xl border border-white/5 space-y-6">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <span>Informasi Kontak</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        </h3>
+
+                        <!-- Item: Email -->
+                        <a href="mailto:alex.developer@techcompany.id" class="flex items-center gap-4 p-3 rounded-xl bg-slate-900/50 hover:bg-slate-800/80 border border-slate-800/80 hover:border-cyan-500/30 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xs text-slate-400 font-mono">Email Pribadi</span>
+                                <span class="text-sm font-medium text-slate-200 group-hover:text-cyan-400 transition-colors">alex.developer@tech.id</span>
+                            </div>
+                        </a>
+
+                        <!-- Item: Location -->
+                        <div class="flex items-center gap-4 p-3 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <div class="w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xs text-slate-400 font-mono">Lokasi Kerja</span>
+                                <span class="text-sm font-medium text-slate-200">Jakarta, ID • Remote / On-Site</span>
+                            </div>
+                        </div>
+
+                        <!-- Item: Social Profiles -->
+                        <div class="pt-4 border-t border-slate-800">
+                            <span class="text-xs font-mono text-slate-400 block mb-3 uppercase tracking-wider">Social Channels:</span>
+                            <div class="flex items-center gap-3">
+                                <!-- GitHub -->
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all" aria-label="GitHub Profile">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all" aria-label="LinkedIn Profile">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24Z"/>
+                                    </svg>
+                                </a>
+                                <!-- Twitter/X -->
+                                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all" aria-label="Twitter X Profile">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Interactive Contact Form (Right Column) -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel p-8 rounded-2xl border border-white/5 relative">
+                        
+                        <form id="contact-form" class="space-y-5">
+                            
+                            <!-- Name Input -->
+                            <div>
+                                <label for="form-name" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Nama Lengkap</label>
+                                <input type="text" id="form-name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-sm font-sans">
+                            </div>
+
+                            <!-- Email Input -->
+                            <div>
+                                <label for="form-email" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Alamat Email</label>
+                                <input type="email" id="form-email" required placeholder="john@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-sm font-sans">
+                            </div>
+
+                            <!-- Subject / Project Type -->
+                            <div>
+                                <label for="form-subject" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Topik Diskusi</label>
+                                <select id="form-subject" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-sm font-sans">
+                                    <option value="Proyek Web Frontend">Proyek Web Modern / Frontend</option>
+                                    <option value="Integrasi AI / RAG">Integrasi AI / Machine Learning Solution</option>
+                                    <option value="Tawaran Full-time / Remote">Peluang Kerja / Full-time Collaboration</option>
+                                    <option value="Lainnya">Diskusi Santai & Networking</option>
+                                </select>
+                            </div>
+
+                            <!-- Message Input -->
+                            <div>
+                                <label for="form-message" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">Pesan Anda</label>
+                                <textarea id="form-message" rows="4" required placeholder="Ceritakan detail proyek atau ide yang ingin Anda kembangkan bersama..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-sm font-sans resize-none"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="btn-submit-contact" class="w-full py-4 px-6 rounded-xl font-semibold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] transition-all flex items-center justify-center gap-2">
+                                <span id="btn-submit-text">Kirim Pesan Kolaborasi</span>
+                                <svg id="btn-submit-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5 bg-[#02050e] py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center font-mono text-cyan-400 font-bold text-sm">
+                    &lt;&gt;
+                </div>
+                <div>
+                    <span class="text-sm font-semibold text-white">DevPortfolio.ai</span>
+                    <span class="block text-xs text-slate-500 font-mono">Modern Tech Company Standard</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6 text-xs text-slate-400 font-mono">
+                <span>Built with HTML5 • Tailwind CSS • JavaScript</span>
+                <span class="hidden sm:inline">•</span>
+                <span class="flex items-center gap-1.5 text-emerald-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span> All systems operational
+                </span>
+            </div>
+
+            <div class="text-xs text-slate-500 font-mono">
+                &copy; <span id="current-year">2026</span> Personal Developer. All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Interactive Feedback Toast Notification -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-panel px-5 py-4 rounded-2xl border border-cyan-500/40 shadow-[0_10px_30px_rgba(6,182,212,0.3)] flex items-center gap-3.5 bg-[#0b1329]/95">
+            <div id="toast-icon-wrapper" class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div>
+                <h4 id="toast-title" class="text-sm font-bold text-white">Berhasil Dikirim!</h4>
+                <p id="toast-desc" class="text-xs text-slate-300">Pesan Anda telah diterima. Saya akan segera merespons.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Interactive Script -->
+    <script>
+        // Set dynamic current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toast Notification Trigger
+        function showToast(title, desc, isSuccess = true) {
+            const toast = document.getElementById('toast-notification');
+            const toastTitle = document.getElementById('toast-title');
+            const toastDesc = document.getElementById('toast-desc');
+            const toastIcon = document.getElementById('toast-icon-wrapper');
+
+            toastTitle.textContent = title;
+            toastDesc.textContent = desc;
+
+            if (isSuccess) {
+                toastIcon.className = "w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center";
+                toastIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+            } else {
+                toastIcon.className = "w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center";
+                toastIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            }
+
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // CV Download Action
+        const btnDownloadCv = document.getElementById('btn-download-cv');
+        btnDownloadCv.addEventListener('click', () => {
+            // Generate virtual downloadable CV text / resume file
+            const cvContent = `CURRICULUM VITAE - ALEX DEVELOPER
+Frontend & AI Enthusiast
+Standard Modern Tech Company Portfolio
+
+PROFIL SINGKAT:
+Software Engineer berfokus pada Modern Frontend Architecture (JavaScript, Tailwind CSS)
+dan integrasi Machine Learning / AI Solutions (Python, Google Cloud Vertex AI).
+
+KEAHLIAN UTAMA:
+- JavaScript (ES6+, DOM, Async/Await, WebSockets)
+- Python (FastAPI, LangChain, RAG Pipelines)
+- Tailwind CSS (Glassmorphism, Responsive Grid, Motion)
+- Google Cloud (Cloud Run, Vertex AI, Storage)
+
+PROYEK UNGGULAN:
+1. NexusAI Generative Studio (Python + Google Cloud + Tailwind)
+2. OmniPulse Realtime Dashboard (JavaScript + WebSockets + Tailwind)
+3. Cerebra Enterprise RAG Bot (Python + Vertex AI + LangChain)
+
+KONTAK:
+Email: alex.developer@tech.id
+GitHub: github.com/developer
+Portfolio: http://localhost:3000
+`;
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'CV-Alex-Developer-Frontend-AI.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast("CV Berhasil Diunduh!", "Berkas resume telah tersimpan di perangkat Anda.", true);
+        });
+
+        // Contact Form Submission Action
+        const contactForm = document.getElementById('contact-form');
+        const btnSubmit = document.getElementById('btn-submit-contact');
+        const btnSubmitText = document.getElementById('btn-submit-text');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            
+            // Simulating network request
+            btnSubmit.disabled = true;
+            btnSubmitText.textContent = "Mengirim Pesan...";
+
+            setTimeout(() => {
+                btnSubmit.disabled = false;
+                btnSubmitText.textContent = "Kirim Pesan Kolaborasi";
+                contactForm.reset();
+                showToast(`Terima kasih, ${name}!`, "Pesan kolaborasi Anda telah terkirim dengan sukses.", true);
+            }, 800);
+        });
+
+        // Project Demo & Code Modals
+        function triggerDemoModal(projectName, url) {
+            showToast("Membuka Preview Proyek", `Simulasi membuka live demo untuk: ${projectName}`, false);
+        }
+
+        function triggerCodeModal(projectName, url) {
+            showToast("Membuka Source Code", `Repository GitHub untuk: ${projectName}`, false);
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                nav.classList.add('shadow-lg', 'shadow-cyan-500/5');
+            } else {
+                nav.classList.remove('shadow-lg', 'shadow-cyan-500/5');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
